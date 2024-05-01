@@ -11,9 +11,6 @@ namespace WarehouseManager.Domain.Products
 {
     public sealed class Product:BaseProduct
     {
-        public string Name { get; private set; }
-        public string Description { get; private set; }
-
         private Product(ProductId id, string name, string description) : base(id, name, description)
         {
 

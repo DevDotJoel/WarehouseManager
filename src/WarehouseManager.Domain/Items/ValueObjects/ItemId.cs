@@ -23,10 +23,5 @@ namespace WarehouseManager.Domain.Items.ValueObjects
         {
             return new ItemId(Guid.NewGuid());
         }
-
-        private ItemId()
-        {
-
-        }
     }
 }

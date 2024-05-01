@@ -9,7 +9,7 @@ namespace WarehouseManager.Domain.Products.ValueObjects
 {
     public class ProductId:EntityId<Guid>
     {
-        private ProductId(Guid id):base(id)
+        private ProductId(Guid value):base(value)
         {
             
         }

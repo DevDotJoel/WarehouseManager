@@ -18,7 +18,7 @@ namespace WarehouseManager.Domain.Items
         public ItemStatus Status { get; private set; }
         public LocationStatus Location { get; private set; }
 
-        public Item(ItemId id,ProductId productId):base(id) 
+        private Item(ItemId id,ProductId productId):base(id) 
         {
             ProductId = productId;
             Status = ItemStatus.Movement;
@@ -30,6 +30,10 @@ namespace WarehouseManager.Domain.Items
             var item = new Item(ItemId.CreateUnique(), productId);
             item.AddDomainEvent(new ItemCreated(item));
             return item;
+        }
+        private Item()
+        {
+            
         }
     }
 }
