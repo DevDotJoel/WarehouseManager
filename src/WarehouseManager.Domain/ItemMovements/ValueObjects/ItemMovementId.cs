@@ -17,5 +17,9 @@ namespace WarehouseManager.Domain.ItemMovements.ValueObjects
         {
             return new ItemMovementId(value);
         }
+        private ItemMovementId()
+        {
+            
+        }
     }
 }

@@ -12,9 +12,9 @@ namespace WarehouseManager.Domain.Stores
 {
     public sealed class Store:Entity<StoreId>
     {
-        private readonly List<ItemId> items = new();
+        private readonly List<ItemId> _itemIds = new();
         public string Name { get; private set; }
-        public IReadOnlyList<ItemId> Items => items.AsReadOnly();
+        public IReadOnlyList<ItemId> ItemIds => _itemIds.AsReadOnly();
         private Store(StoreId id,string name):base(id)
         {
             Name = name;

@@ -4,7 +4,7 @@ namespace WarehouseManager.Domain.Employees.ValueObjects
 {
     public class EmployeeId:EntityId<Guid>
     {
-        public EmployeeId(Guid value) :base(value)
+        private EmployeeId(Guid value) :base(value)
         {
             
         }
@@ -16,6 +16,10 @@ namespace WarehouseManager.Domain.Employees.ValueObjects
         public static EmployeeId Create(Guid value)
         {
             return new EmployeeId(value);
+        }
+        private EmployeeId()
+        {
+                
         }
     }
 }
