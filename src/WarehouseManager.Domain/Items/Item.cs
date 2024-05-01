@@ -21,7 +21,7 @@ namespace WarehouseManager.Domain.Items
         private Item(ItemId id,ProductId productId):base(id) 
         {
             ProductId = productId;
-            Status = ItemStatus.Movement;
+            Status = ItemStatus.NotInMovement;
             Location = LocationStatus.Warehouse;
         }
 
