@@ -1,4 +1,4 @@
-Warehouse Applicattion
+<b>Warehouse Applicattion</b>
 
 Requirements
  This is an app that will manage warehouse data about a multi-store retail business of your choice.
