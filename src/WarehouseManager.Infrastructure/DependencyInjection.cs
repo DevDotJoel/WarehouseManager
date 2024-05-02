@@ -6,7 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WarehouseManager.Application.Common.Persistence;
 using WarehouseManager.Infrastructure.Common.Persistence;
+using WarehouseManager.Infrastructure.Common.Persistence.Repositories;
 
 namespace WarehouseManager.Infrastructure
 {
@@ -20,7 +22,7 @@ namespace WarehouseManager.Infrastructure
         private static IServiceCollection AddPersistence(this IServiceCollection services)
         {
             services.AddDbContext<WarehouseManagerContext>(options => options.UseSqlServer("name=ConnectionStrings:DefaultConnection"));
-
+            services.AddScoped<IWarehouseSlotRepository, WarehouseSlotRepository>();
             return services;
         }
     }

@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Common\Persistence\Interceptors\" />
-    <Folder Include="Common\Persistence\Repositories\" />
     <Folder Include="Services\" />
   </ItemGroup>
 
@@ -22,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\WarehouseManager.Application\WarehouseManager.Application.csproj" />
     <ProjectReference Include="..\WarehouseManager.Domain\WarehouseManager.Domain.csproj" />
   </ItemGroup>
 
