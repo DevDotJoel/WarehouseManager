@@ -27,16 +27,6 @@ namespace WarehouseManager.Infrastructure.Common.Persistence.Configurations.Item
              HasColumnName("ProductId")
              .ValueGeneratedNever()
              .HasConversion(id => id.Value, value => ProductId.Create(value));
-
-
-            builder.Property(d => d.Status)
-            .HasConversion(
-                status => status.Value,
-                value => ItemStatus.FromValue(value));
-            builder.Property(d => d.Location)
-           .HasConversion(
-               status => status.Value,
-               value => LocationStatus.FromValue(value));
         }
     }
 }

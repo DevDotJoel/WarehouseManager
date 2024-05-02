@@ -23,8 +23,23 @@ namespace WarehouseManager.Infrastructure.Common.Persistence.Configurations.Ware
                 .HasConversion(id => id.Value, value => WarehouseSlotId.Create(value));
 
             builder.HasIndex(x => x.SlotNumber).IsUnique();
-
             builder.HasIndex(x => x.Isle).IsUnique();
+            builder.HasIndex(x => x.Name).IsUnique();
+            builder.OwnsMany(m => m.ItemIds, dib =>
+            {
+                dib.ToTable("WarehouseSlotItemIds");
+
+                dib.WithOwner().HasForeignKey("WarehouseSlotId");
+
+                dib.HasKey("Id");
+
+                dib.Property(d => d.Value)
+                    .HasColumnName("ItemId")
+                    .ValueGeneratedNever();
+            });
+
+            builder.Metadata.FindNavigation(nameof(WarehouseSlot.ItemIds))!
+                .SetPropertyAccessMode(PropertyAccessMode.Field);
         }
     }
 }

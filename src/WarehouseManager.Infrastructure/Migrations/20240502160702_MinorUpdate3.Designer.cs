@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WarehouseManager.Infrastructure.Common.Persistence;
 
@@ -11,9 +12,11 @@ using WarehouseManager.Infrastructure.Common.Persistence;
 namespace WarehouseManager.Infrastructure.Migrations
 {
     [DbContext(typeof(WarehouseManagerContext))]
-    partial class WarehouseManagerContextModelSnapshot : ModelSnapshot
+    [Migration("20240502160702_MinorUpdate3")]
+    partial class MinorUpdate3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -180,36 +183,6 @@ namespace WarehouseManager.Infrastructure.Migrations
 
                             b1.WithOwner()
                                 .HasForeignKey("StoreId");
-                        });
-
-                    b.Navigation("ItemIds");
-                });
-
-            modelBuilder.Entity("WarehouseManager.Domain.WarehouseSlots.WarehouseSlot", b =>
-                {
-                    b.OwnsMany("WarehouseManager.Domain.Items.ValueObjects.ItemId", "ItemIds", b1 =>
-                        {
-                            b1.Property<int>("Id")
-                                .ValueGeneratedOnAdd()
-                                .HasColumnType("int");
-
-                            SqlServerPropertyBuilderExtensions.UseIdentityColumn(b1.Property<int>("Id"));
-
-                            b1.Property<Guid>("Value")
-                                .HasColumnType("uniqueidentifier")
-                                .HasColumnName("ItemId");
-
-                            b1.Property<Guid>("WarehouseSlotId")
-                                .HasColumnType("uniqueidentifier");
-
-                            b1.HasKey("Id");
-
-                            b1.HasIndex("WarehouseSlotId");
-
-                            b1.ToTable("WarehouseSlotItemIds", (string)null);
-
-                            b1.WithOwner()
-                                .HasForeignKey("WarehouseSlotId");
                         });
 
                     b.Navigation("ItemIds");

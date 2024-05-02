@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WarehouseManager.Infrastructure.Common.Persistence;
 
@@ -11,9 +12,11 @@ using WarehouseManager.Infrastructure.Common.Persistence;
 namespace WarehouseManager.Infrastructure.Migrations
 {
     [DbContext(typeof(WarehouseManagerContext))]
-    partial class WarehouseManagerContextModelSnapshot : ModelSnapshot
+    [Migration("20240502154453_MinorUpdate")]
+    partial class MinorUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -67,27 +70,6 @@ namespace WarehouseManager.Infrastructure.Migrations
                     b.ToTable("ItemMovements", (string)null);
                 });
 
-            modelBuilder.Entity("WarehouseManager.Domain.Items.Item", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("ItemId");
-
-                    b.Property<int>("Location")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("ProductId");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Items", (string)null);
-                });
-
             modelBuilder.Entity("WarehouseManager.Domain.Products.Product", b =>
                 {
                     b.Property<Guid>("Id")
@@ -134,19 +116,12 @@ namespace WarehouseManager.Infrastructure.Migrations
                     b.Property<Guid>("Isle")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<Guid>("SlotNumber")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
                     b.HasIndex("Isle")
-                        .IsUnique();
-
-                    b.HasIndex("Name")
                         .IsUnique();
 
                     b.HasIndex("SlotNumber")
@@ -157,62 +132,36 @@ namespace WarehouseManager.Infrastructure.Migrations
 
             modelBuilder.Entity("WarehouseManager.Domain.Stores.Store", b =>
                 {
-                    b.OwnsMany("WarehouseManager.Domain.Items.ValueObjects.ItemId", "ItemIds", b1 =>
+                    b.OwnsMany("WarehouseManager.Domain.Items.Item", "Items", b1 =>
                         {
-                            b1.Property<int>("Id")
-                                .ValueGeneratedOnAdd()
-                                .HasColumnType("int");
-
-                            SqlServerPropertyBuilderExtensions.UseIdentityColumn(b1.Property<int>("Id"));
+                            b1.Property<Guid>("Id")
+                                .HasColumnType("uniqueidentifier")
+                                .HasColumnName("StoreItemId");
 
                             b1.Property<Guid>("StoreId")
                                 .HasColumnType("uniqueidentifier");
 
-                            b1.Property<Guid>("Value")
-                                .HasColumnType("uniqueidentifier")
-                                .HasColumnName("ItemId");
+                            b1.Property<int>("Location")
+                                .HasColumnType("int");
 
-                            b1.HasKey("Id");
+                            b1.Property<Guid>("ProductId")
+                                .HasColumnType("uniqueidentifier")
+                                .HasColumnName("ProductId");
+
+                            b1.Property<int>("Status")
+                                .HasColumnType("int");
+
+                            b1.HasKey("Id", "StoreId");
 
                             b1.HasIndex("StoreId");
 
-                            b1.ToTable("StoreItemIds", (string)null);
+                            b1.ToTable("StoreItems", (string)null);
 
                             b1.WithOwner()
                                 .HasForeignKey("StoreId");
                         });
 
-                    b.Navigation("ItemIds");
-                });
-
-            modelBuilder.Entity("WarehouseManager.Domain.WarehouseSlots.WarehouseSlot", b =>
-                {
-                    b.OwnsMany("WarehouseManager.Domain.Items.ValueObjects.ItemId", "ItemIds", b1 =>
-                        {
-                            b1.Property<int>("Id")
-                                .ValueGeneratedOnAdd()
-                                .HasColumnType("int");
-
-                            SqlServerPropertyBuilderExtensions.UseIdentityColumn(b1.Property<int>("Id"));
-
-                            b1.Property<Guid>("Value")
-                                .HasColumnType("uniqueidentifier")
-                                .HasColumnName("ItemId");
-
-                            b1.Property<Guid>("WarehouseSlotId")
-                                .HasColumnType("uniqueidentifier");
-
-                            b1.HasKey("Id");
-
-                            b1.HasIndex("WarehouseSlotId");
-
-                            b1.ToTable("WarehouseSlotItemIds", (string)null);
-
-                            b1.WithOwner()
-                                .HasForeignKey("WarehouseSlotId");
-                        });
-
-                    b.Navigation("ItemIds");
+                    b.Navigation("Items");
                 });
 #pragma warning restore 612, 618
         }

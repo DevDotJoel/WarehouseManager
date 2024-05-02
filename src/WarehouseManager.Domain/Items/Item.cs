@@ -15,14 +15,10 @@ namespace WarehouseManager.Domain.Items
     public sealed class Item:Entity<ItemId>
     {
         public ProductId ProductId { get; private set; }
-        public ItemStatus Status { get; private set; }
-        public LocationStatus Location { get; private set; }
 
         private Item(ItemId id,ProductId productId):base(id) 
         {
             ProductId = productId;
-            Status = ItemStatus.NotInMovement;
-            Location = LocationStatus.Warehouse;
         }
 
         public static Item Create(ProductId productId)
@@ -31,6 +27,7 @@ namespace WarehouseManager.Domain.Items
             item.AddDomainEvent(new ItemCreated(item));
             return item;
         }
+
         private Item()
         {
             
