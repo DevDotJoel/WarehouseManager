@@ -1,7 +1,7 @@
 <h3><b>Warehouse Management App</b></h3>
 
 Overview
-This README provides an overview of a Warehouse Management App designed to efficiently manage warehouse data for a multi-store retail business. The app facilitates tracking product movements, managing inventory across stores and warehouses, and providing insights into item history.
+This  Warehouse Management App is designed to efficiently manage warehouse data for a multi-store retail business. The app facilitates tracking product movements, managing inventory across stores and warehouses, and providing insights into item history.
 
 Requirements
 The app is designed to meet the following requirements:
