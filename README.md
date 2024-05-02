@@ -1,10 +1,10 @@
 <h3><b>Warehouse Management App</b></h3>
 
 Overview
-This  Warehouse Management App is designed to efficiently manage warehouse data for a multi-store retail business. The app facilitates tracking product movements, managing inventory across stores and warehouses, and providing insights into item history.
+<p>This  Warehouse Management App is designed to efficiently manage warehouse data for a multi-store retail business. The app facilitates tracking product movements, managing inventory across stores and warehouses, and providing insights into item history.</p>
 
-Requirements
-The app is designed to meet the following requirements:
+<p>Requirements</p>
+<p>The app is designed to meet the following requirements:</p>
 
 Data Schema: The data schema includes the following tables:
 Products: Information about available products.
